@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   postgres:
@@ -16,6 +14,8 @@ services:
       interval: 5s
       retries: 5
       start_period: 5s
+    networks:
+      - ecommerce-network
 
   spring-app:
     build: .
@@ -25,3 +25,12 @@ services:
         condition: service_healthy
     ports:
       - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
