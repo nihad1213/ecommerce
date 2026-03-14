@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.dtos.common.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,5 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DeleteDataRequestDto {
+    @NotNull(message = "Id can't be null!")
     Long id;
 }
