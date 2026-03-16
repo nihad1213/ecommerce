@@ -27,7 +27,7 @@ import lombok.experimental.FieldDefaults;
 public class BaseEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @CreatedDate

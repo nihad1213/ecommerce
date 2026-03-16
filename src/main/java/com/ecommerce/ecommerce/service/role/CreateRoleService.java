@@ -16,6 +16,10 @@ public class CreateRoleService {
     private final RoleRepository roleRepository;
 
     public CreateRoleResponseDto createRole(CreateRoleRequestDto dto) {
+        
+        if (roleRepository.existsByName(dto.getName()))
+            throw new RuntimeException("Role with this name already exists");
+        
         Role role = new Role();
         role.setName(dto.getName());
 
