@@ -35,27 +35,27 @@ public class RoleController {
     private final ReadOneRoleService readOneRoleService;
     private final UpdateRoleService updateRoleService;
 
-    @PostMapping
+    @PostMapping("/create")
     public CreateRoleResponseDto create(@RequestBody @Valid CreateRoleRequestDto dto) {
         return createRoleService.createRole(dto);
     }
 
-    @GetMapping
+    @GetMapping("/read-all")
     public ReadAllRolesResponseDto readAll(ReadAllRolesRequestDto dto, PaginationRequestDto pagination) {
         return readAllRolesService.readAll(dto, pagination);
     }
 
-    @GetMapping("/one")
+    @GetMapping("/read-one")
     public RoleDto readOne(ReadOneDataRequestDto dto) {
         return readOneRoleService.readOne(dto);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public UpdateRoleResponseDto update(@RequestBody @Valid UpdateRoleRequestDto dto) {
         return updateRoleService.update(dto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public DeleteDataResponseDto delete(@RequestBody @Valid DeleteDataRequestDto dto) {
         return deleteRoleService.delete(dto);
     }
