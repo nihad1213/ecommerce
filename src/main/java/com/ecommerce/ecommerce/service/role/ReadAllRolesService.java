@@ -28,10 +28,12 @@ public class ReadAllRolesService {
 
         Page<Role> rolePage;
 
+        String name = dto.getName();
+
         if (dto.getName() == null || dto.getName().isBlank()) {
             rolePage = roleRepository.findAll(pageRequest);
         } else {
-            rolePage = roleRepository.findByNameContainingIgnoreCase(dto.getName(), pageRequest);
+            rolePage = roleRepository.findByNameContainingIgnoreCase(name.trim(), pageRequest);
         }
 
         List<RoleDto> roles =
