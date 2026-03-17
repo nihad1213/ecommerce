@@ -2,11 +2,11 @@ package com.ecommerce.ecommerce.controller.role;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.ecommerce.dtos.common.request.DeleteDataRequestDto;
@@ -46,8 +46,12 @@ public class RoleController {
         return createRoleService.createRole(dto);
     }
 
-    @GetMapping("/read-all")
-    public ReadAllRolesResponseDto readAll(ReadAllRolesRequestDto dto, PaginationRequestDto pagination) {
+    @PostMapping("/read-all")
+    public ReadAllRolesResponseDto readAll(@RequestBody ReadAllRolesRequestDto dto,
+            @RequestParam int pageNumber,
+            @RequestParam int pageSize
+    ) {
+        PaginationRequestDto pagination = new PaginationRequestDto(pageNumber, pageSize);
         return readAllRolesService.readAll(dto, pagination);
     }
 
