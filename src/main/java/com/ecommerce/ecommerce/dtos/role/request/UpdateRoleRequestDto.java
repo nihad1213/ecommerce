@@ -1,5 +1,7 @@
 package com.ecommerce.ecommerce.dtos.role.request;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -18,4 +20,6 @@ public class UpdateRoleRequestDto {
 
     @NotBlank(message = "Name can't be null!")
     String name;
+
+    Set<String> permissionKeys;
 }
