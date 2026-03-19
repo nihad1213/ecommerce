@@ -28,6 +28,11 @@ public class UpdateRoleService {
 
         role.setName(dto.getName());
 
+        if (!role.getName().equals(dto.getName()) &&
+            roleRepository.existsByName(dto.getName())) {
+            throw new RuntimeException("Role with this name already exists");
+        }
+
         if (dto.getPermissionKeys() != null) {
             Set<Permission> permissions = dto.getPermissionKeys().stream()
                 .map(key -> permissionRepository.findByPermissionKey(key)
