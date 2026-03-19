@@ -20,8 +20,11 @@ public class PermissionSeeder implements CommandLineRunner{
     }
 
     private void seedPermission() {
-        createPermission("create_user", "Create User");
-        createPermission("update_user", "Update User");
+        createPermission("create_role", "Create Role");
+        createPermission("update_role", "Update Role");
+        createPermission("read_role", "Read Role");
+        createPermission("delete_role", "Delete Role");
+
     }
 
     private void createPermission(String key, String name) {
