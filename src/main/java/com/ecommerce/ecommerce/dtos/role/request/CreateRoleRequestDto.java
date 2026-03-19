@@ -1,5 +1,7 @@
 package com.ecommerce.ecommerce.dtos.role.request;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,4 +16,6 @@ import lombok.experimental.FieldDefaults;
 public class CreateRoleRequestDto {
     @NotBlank(message = "Name can't be blank!")
     String name;
+
+    Set<String> permissionKeys;
 }
