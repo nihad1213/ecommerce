@@ -1,6 +1,8 @@
 package com.ecommerce.ecommerce.service.role;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,11 +37,20 @@ public class ReadAllRolesService {
         } else {
             rolePage = roleRepository.findByNameContainingIgnoreCase(name.trim(), pageRequest);
         }
+        
 
         List<RoleDto> roles =
                 rolePage.getContent()
                         .stream()
-                        .map(role -> new RoleDto(role.getId(), role.getName()))
+                        .map(role -> new RoleDto(
+                                role.getId(),
+                                role.getName(),
+                                role.getPermissions() == null ? Set.of() :
+                                    role.getPermissions()
+                                        .stream()
+                                        .map(permission -> permission.getPermissionName())
+                                        .collect(Collectors.toSet())
+                        ))
                         .toList();
 
         return new ReadAllRolesResponseDto(roles);

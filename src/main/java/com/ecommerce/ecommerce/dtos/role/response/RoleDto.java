@@ -1,6 +1,11 @@
 package com.ecommerce.ecommerce.dtos.role.response;
 
-import lombok.*;
+import java.util.Set;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
@@ -10,4 +15,5 @@ import lombok.experimental.FieldDefaults;
 public class RoleDto {
     Long id;
     String name;
+    Set<String> permissions;
 }
