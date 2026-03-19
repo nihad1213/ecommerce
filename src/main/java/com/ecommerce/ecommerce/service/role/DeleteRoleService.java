@@ -19,6 +19,9 @@ public class DeleteRoleService {
         Role role = roleRepository.findById(dto.getId())
                 .orElseThrow(() -> new RuntimeException("Role not found"));
 
+        if (role.getPermissions() != null) {
+            role.getPermissions().clear();
+        }
         roleRepository.delete(role);
 
         return new DeleteDataResponseDto("Role deleted successfully!");
