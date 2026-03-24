@@ -28,7 +28,7 @@ public class PermissionSeeder implements CommandLineRunner{
         createPermission("create_product_category", "Create Product Category");
         createPermission("update_product_category", "Update Product Category");
         createPermission("read_product_category", "Read Product Category");
-        createPermission("delete_product_category", "Delete Product Category");~
+        createPermission("delete_product_category", "Delete Product Category");
 
     }
 
