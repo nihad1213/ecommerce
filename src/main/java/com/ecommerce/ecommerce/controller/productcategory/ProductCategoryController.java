@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.controller.productcategory;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,11 +43,13 @@ public class ProductCategoryController {
     private final DeleteProductCategoryService deleteProductCategoryService;
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('create_product_category')")
     public CreateProductCategoryResponseDto create(@RequestBody @Valid CreateProductCategoryRequestDto dto) {
         return createProductCategoryService.create(dto);
     }
 
     @PostMapping("/read-all")
+    @PreAuthorize("hasAuthority('read_product_category')")
     public ReadAllProductCategoriesResponseDto readAll(
             @RequestBody ReadAllProductCategoryRequestDto dto,
             @RequestParam int pageNumber,
@@ -57,16 +60,19 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/read-one")
+    @PreAuthorize("hasAuthority('read_product_category')")
     public ProductCategoryDto readOne(@RequestBody @Valid ReadOneDataRequestDto dto) {
         return readOneProductCategoryService.readOne(dto);
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('update_product_category')")
     public UpdateProductCategoryResponseDto update(@RequestBody @Valid UpdateProductCategoryRequestDto dto) {
         return updateProductCategoryService.update(dto);
     }
 
     @DeleteMapping("/delete")
+    @PreAuthorize("hasAuthority('delete_product_category')")
     public DeleteDataResponseDto delete(@RequestBody @Valid DeleteDataRequestDto dto) {
         return deleteProductCategoryService.delete(dto);
     }

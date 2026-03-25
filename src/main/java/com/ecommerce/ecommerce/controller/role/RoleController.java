@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.controller.role;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,11 +43,13 @@ public class RoleController {
     private final UpdateRoleService updateRoleService;
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('create_role')")
     public CreateRoleResponseDto create(@RequestBody @Valid CreateRoleRequestDto dto) {
         return createRoleService.createRole(dto);
     }
 
     @PostMapping("/read-all")
+    @PreAuthorize("hasAuthority('read_role')")
     public ReadAllRolesResponseDto readAll(@RequestBody ReadAllRolesRequestDto dto,
             @RequestParam int pageNumber,
             @RequestParam int pageSize
@@ -56,16 +59,19 @@ public class RoleController {
     }
 
     @PostMapping("/read-one")
+    @PreAuthorize("hasAuthority('read_role')")
     public RoleDto readOne(@RequestBody @Valid ReadOneDataRequestDto dto) {
         return readOneRoleService.readOne(dto);
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('update_role')")
     public UpdateRoleResponseDto update(@RequestBody @Valid UpdateRoleRequestDto dto) {
         return updateRoleService.update(dto);
     }
 
     @DeleteMapping("/delete")
+    @PreAuthorize("hasAuthority('delete_role')")
     public DeleteDataResponseDto delete(@RequestBody @Valid DeleteDataRequestDto dto) {
         return deleteRoleService.delete(dto);
     }
